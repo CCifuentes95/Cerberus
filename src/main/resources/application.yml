@@ -1,0 +1,42 @@
+connections:
+  database:
+    url: jdbc:postgresql://localhost:5432/cerberus
+    username: root
+    password: 123456
+
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+  jackson:
+    default-property-inclusion: non_null
+  profiles:
+    active: @spring.profiles.active@
+
+
+---
+
+spring:
+  datasource:
+    url: ${connections.database.url}
+    username: ${connections.database.username}
+    password: ${connections.database.password}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  profiles:
+    active: dev
+
+---
+
+spring:
+  profiles:
+    active: Integration
+
+
