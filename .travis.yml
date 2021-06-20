@@ -1,0 +1,24 @@
+sudo: required
+language: java
+jdk:
+  - openjdk11
+services:
+  - docker
+env:
+  global:
+    - SHA=$(git rev-parse --short HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
+before_install:
+  - docker pull openjdk:11-jdk-slim
+
+jobs:
+  include:
+    - stage: "Build"
+      name: "Unit Tests"
+      script: ./mvnw package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+    - stage: "Tests"                # naming the Tests stage
+      name: "Unit Tests"            # names the first Tests stage job
+      script: ./unit-tests
+    - script: mvn verify -PIntegration
+      name: "Integration Tests"     # names the second Tests stage job
