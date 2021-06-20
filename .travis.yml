@@ -20,8 +20,8 @@ jobs:
     - stage: "Build"
       name: "Build the project"
       script: ./mvnw package -DskipTests=true
-    - stage: "Tests"                # naming the Tests stage
-      name: "Unit Tests"            # names the first Tests stage job
+    - stage: "Tests"
+      name: "Unit Tests"
       script: ./mvnw test
     - script: ./mvnw verify -PIntegration
-      name: "Integration Tests"     # names the second Tests stage job
+      name: "Integration Tests"
