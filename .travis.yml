@@ -15,10 +15,10 @@ before_install:
 jobs:
   include:
     - stage: "Build"
-      name: "Unit Tests"
-      script: ./mvnw package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      name: "Build the project"
+      script: mvn package -DskipTests=true
     - stage: "Tests"                # naming the Tests stage
       name: "Unit Tests"            # names the first Tests stage job
-      script: ./unit-tests
+      script: mvn test
     - script: mvn verify -PIntegration
       name: "Integration Tests"     # names the second Tests stage job
