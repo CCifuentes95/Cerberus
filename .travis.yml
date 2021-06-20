@@ -25,3 +25,6 @@ jobs:
       script: ./mvnw test
     - script: ./mvnw verify -PIntegration
       name: "Integration Tests"
+    - stage: "Docker Build"
+      name: "Build the docker image"
+      script: bash ./docker-build.sh
