@@ -1,4 +1,4 @@
-FROM openjdk:15-jdk-slim as bulid
+FROM openjdk:11-jdk-slim as bulid
 WORKDIR application
 
 COPY mvnw .
@@ -11,7 +11,7 @@ RUN ./mvnw  install -DskipTests
 RUN cp /application/target/*.jar app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
-FROM openjdk:15-jdk-slim
+FROM openjdk:11-jdk-slim
 WORKDIR application
 COPY --from=bulid application/dependencies/ ./
 COPY --from=bulid application/spring-boot-loader/ ./
