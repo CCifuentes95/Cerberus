@@ -11,14 +11,17 @@ env:
 
 before_install:
   - docker pull openjdk:11-jdk-slim
+  - chmod +x mvnw
+  - docker logout
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 jobs:
   include:
     - stage: "Build"
       name: "Build the project"
-      script: mvn package -DskipTests=true
+      script: ./mvnw package -DskipTests=true
     - stage: "Tests"                # naming the Tests stage
       name: "Unit Tests"            # names the first Tests stage job
-      script: mvn test
-    - script: mvn verify -PIntegration
+      script: ./mvnw test
+    - script: ./mvnw verify -PIntegration
       name: "Integration Tests"     # names the second Tests stage job
