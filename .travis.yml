@@ -18,8 +18,6 @@ before_install:
   - docker logout
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf "$HOME/google-cloud-sdk"; curl https://sdk.cloud.google.com | bash > /dev/null; fi
-
-before_deploy:
   - source $HOME/google-cloud-sdk/path.bash.inc
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
   - gcloud version
@@ -43,7 +41,7 @@ jobs:
       name: "Build the docker image"
       script: bash ./docker-build.sh
       if: branch = develop
-    - stage: deploy
+    - stage: Deploy
       name: "Deploy image to Kubernetes Cluster"
       script: bash ./deploy.sh
       if: branch = develop
