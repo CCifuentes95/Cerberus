@@ -1,6 +1,6 @@
 version = 1
 
-test_patterns = ["**/*Tets, **/*IT"]
+test_patterns = ["**/*Tests, **/*IT"]
 
 [[analyzers]]
 name = "java"
