@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spring-config
+data:
+  dev-config.json:
+    '{
+      "connections.database.host": "postgres-cluster-ip-service",
+      "connections.database.port": "5432",
+      "connections.database.db": "cerberus"
+     }'

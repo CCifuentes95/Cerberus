@@ -1,8 +1,8 @@
 connections:
   database:
-    url: jdbc:postgresql://localhost:5432/cerberus
-    username: root
-    password: 123456
+    host: localhost
+    port: 5432
+    db: cerberus
 
 spring:
   h2:
@@ -18,14 +18,13 @@ spring:
   profiles:
     active: @spring.profiles.active@
 
-
 ---
 
 spring:
   datasource:
-    url: ${connections.database.url}
-    username: ${connections.database.username}
-    password: ${connections.database.password}
+    url: jdbc:postgresql://${connections.database.host}:${connections.database.port}/${connections.database.db}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
