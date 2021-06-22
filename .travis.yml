@@ -45,7 +45,7 @@ jobs:
       name: "Integration Tests"
     - stage: "Analyze"
       name: "Analyze the test results"
-      script: ./mvnw org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=CCifuentes95_Cerberus
+      script: ./mvnw verify sonar:sonar -Pcoverage -Dsonar.projectKey=CCifuentes95_Cerberus
       if: branch = develop
     - stage: "Docker Build"
       name: "Build the docker image"
