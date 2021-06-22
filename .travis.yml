@@ -12,6 +12,8 @@ cache:
   directories:
     - $HOME/.m2
     - $HOME/google-cloud-sdk
+    - $HOME/.sonar/cache
+
 addons:
   sonarcloud:
     organization: "ccifuentes95"
