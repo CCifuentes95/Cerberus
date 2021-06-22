@@ -16,8 +16,7 @@ addons:
   sonarcloud:
     organization: "ccifuentes95"
     token:
-      secure: "V9IYMq4nLDvhTYD8151qSCRlv+bkTLq6/S7kazHSYqlzWqI1ASzB0XudGdochTmaISVO/FHfkOR1MuMvGU1kuPl3qDmqq9Y/V4JTj1S/EQgFmLb3Dy6pJkvi3wRFHL0Y0c0I30yydbcjCCFaLsle3rDreW6BbP/McZgvEPgtrvP1X7DacpgOVNQehlb3mHtVRv/NhHO6Jn8d/qQQn4pa49dxMT2/u0PwuhKsoaYThj3eJTjYO8LM1rsW2xvqXINB0sHLLdtW6z7gsgs2bV9zY9EPLvvuGA0nURD5mc50cKb0b86v7rfSN7xdbruYS5pKcQ/FEY/cYStyYU5kP+fsZvzTbaETzvIm74bk8BmFFbKFX1Q141/GWc5FWPAzUAPnjn+dtW8ynSp/o8TEGui8SeY76Wm7OIm6EnzOccZl+WXSYwAm2oFB4AWJkKRCL9UG8LHZHNbv7UpBVp9Vt+TKvWaQqOrGyyQ7EuhsDPSNXeuBAgGvkUx8/PSYTbQHQ4vPUkJWyX5tjiAXmGYNnVd3JiYtrjEOitRDzAhBJGXflmb+trsoJ2NwntGT0qYU63gBSb62/0U6jCUazYF3ENvrVvl5fe9+82vgdKLn9N+P35EUw9toaGy9v7+CYBFRxQ5Y64KJj2wNr9XO6d2+SZz1oQhDKTFUBLxE089uTSsPDvE="
-
+      secure: "ieVKD8bk9FOfTNzESVke8up8vwoYTKPC4xOarOigL6iLbIUm/YSeO4eKEAC/hIhk3PFKdpffKiGfG9npsw/afN7liasaz/qC/K74rjeudEZLMgnyxdsb8dDaYtAC0gw87RqnP3S0UgPYaUO9M3yXN62k9JhfyOKIn4XDh/laj/yYf3yCvG4K8PxZZQDQOgPjpj7SsOx3hElXXsuPsyrrFc11fSwN5MKUdOGM18RsL4FwaPIcrFnXlfECZ7a+CazuhFhmmRxlOIvLes4irE/sEdgrucd1R4wSJ0opeDlCuDWhl0CD7BBJsi8bbzJ6v0/mmID6OhVYVF8dZVKR8sYQ7QuA7SKaYVyDHxSnLvruIvzMCKuUVeNXaZSrxWc50LWQ6oXuONr+2dvqszV4X/uzAFwNQrZE6ksGNwBkdBPvCoRQMagAezt7bpAU3mC27HIP2oznWjPDeX++58hEAmdhuXOk3eTanVdhznjtm0VokPbFRS1y1q77wc99xNjVKhFx2w/PByEHQaW6wkZwB1HBYICDoZe6GYPnJa0QYAuP97VPUmS+FPCEzFVlyYkot5je1IFznr7liurEoTsZHKJDbdOvDl5JxhEw/dqh36TuTnibFukTE4VKPDMmpgPyaD1MUzMxfwIGonBB3NztZ7k0wZ49HA6MR8UlXoZSnhsRifs="
 before_install:
   - chmod +x mvnw
   - docker logout
@@ -46,7 +45,7 @@ jobs:
       name: "Integration Tests"
     - stage: "Analyze"
       name: "Analyze the test results"
-      script: ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=CCifuentes95_Cerberus
+      script: ./mvnw org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=CCifuentes95_Cerberus
       if: branch = develop
     - stage: "Docker Build"
       name: "Build the docker image"
